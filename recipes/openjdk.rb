@@ -50,8 +50,7 @@ file "/etc/profile.d/jdk.sh" do
   mode 0755
 end
 
-
-if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon","oracle")
+#if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon","oracle")
   ruby_block "update-java-alternatives" do
     block do
       arch = node['kernel']['machine'] =~ /x86_64/ ? "x86_64" : "i386"
@@ -87,11 +86,11 @@ if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon",
     end
     action :nothing
   end
-end
+#end
 
 pkgs.each do |pkg|
   package pkg do
     action :install
-    notifies :create, resources(:ruby_block => "update-java-alternatives"), :immediately if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon","oracle")
+    notifies :create, resources(:ruby_block => "update-java-alternatives"), :immediately # if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon","oracle")
   end
 end
