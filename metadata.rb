@@ -15,4 +15,4 @@ provides "java::oracle_i386"#, "Installs the 32-bit jvm without setting it as th
   supports os
 end
 
-depends "windows"
+#depends "windows"
